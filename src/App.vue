@@ -1,29 +1,61 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <a-layout id="components-layout-demo-custom-trigger">
+      <SiderBar v-bind:cols="collapsed" />
+      <Content :cols="collapsed" @changeCols="changeColsToSider" />
+    </a-layout>
   </div>
 </template>
 
+<script>
+import SiderBar from './views/home/siderBar.vue'
+import Content from './views/home/content.vue'
+
+export default {
+  name: 'app',
+  components: {
+    SiderBar,
+    Content
+  },
+  data () {
+    return {
+      collapsed: true
+    }
+  },
+  methods: {
+    changeColsToSider (n) {
+      this.collapsed = n;
+    }
+  }
+}
+</script>
+
+
 <style lang="less">
+@import './style/base.less';
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  font-size: 16px;
+
+  #components-layout-demo-custom-trigger .trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color .3s;
+  }
+
+  #components-layout-demo-custom-trigger .trigger:hover {
+    color: #1890ff;
+  }
+
+  #components-layout-demo-custom-trigger .logo {
+    height: 32px;
+    background: rgba(255,255,255,.2);
+    margin: 16px;
   }
 }
 </style>
