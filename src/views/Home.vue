@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <input type="text" v-model="name">
   </div>
 </template>
 
@@ -13,6 +13,11 @@ export default {
   name: 'home',
   components: {
     HelloWorld
+  },
+  data () {
+    return {
+      name: ''
+    }
   }
 }
 </script>
