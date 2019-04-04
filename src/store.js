@@ -6,31 +6,35 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     leftMenu: {
-      selectMenu: '0',
+      showMenu: 0,
       menuArr: [
-        { name: 'option1', isSelect: false },
-        { name: 'option2', isSelect: false },
-        { name: 'option3', isSelect: false },
-        { name: 'option4', isSelect: false },
-        { name: 'option5', isSelect: false },
-        { name: 'option6', isSelect: false },
-        { name: 'option7', isSelect: false },
-        { name: 'option8', isSelect: false },
-        { name: 'option9', isSelect: false },
-        { name: 'option10', isSelect: false },
-        { name: 'option11', isSelect: false },
-        { name: 'option12', isSelect: false},
+        { title: '首页', isSelect: true, key: 'n0', closable: false, content: 'Home'},
+        { title: 'option1', isSelect: true, key: 'n1', content: 'About'},
+        { title: 'option2', isSelect: true, key: 'n2', content: 'About'},
+        { title: 'option3', isSelect: false, key: 'n3', content: 'About'},
+        { title: 'option4', isSelect: false, key: 'n4', content: 'About'},
+        { title: 'option5', isSelect: false, key: 'n5', content: 'About'},
+        { title: 'option6', isSelect: false, key: 'n6', content: 'About'},
+        { title: 'option7', isSelect: false, key: 'n7', content: 'About'},
+        { title: 'option8', isSelect: false, key: 'n8', content: 'About'},
+        { title: 'option9', isSelect: false, key: 'n9', content: 'About'},
+        { title: 'option10', isSelect: false, key: 'n10', content: 'About'},
+        { title: 'option11', isSelect: false, key: 'n11', content: 'About'},
       ]
     },
   },
   mutations: {
-    changeMenu (n, i, t) {
-      var len = Number(i - 1);
-      if(t){
-        this.state.leftMenu.selectMenu = len;
+    changeMenu (n, r) {
+      var len = Number(r.k);
+      if(r.t){
+        this.state.leftMenu.showMenu = len;
       }
-      this.state.leftMenu.menuArr[len].isSelect = t?true:false;
+      this.state.leftMenu.menuArr[len].isSelect = r.t ? true : false;
+      console.log(this.state.leftMenu);
     },
+    changeShowMenu (o, n) {
+      this.state.leftMenu.showMenu = Number(n);
+    }
   },
   actions: {
 
