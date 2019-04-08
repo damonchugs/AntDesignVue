@@ -1,8 +1,7 @@
 <template>
-  <a-tabs v-model="activeKey" type="editable-card" @edit="onEdit" @tabClick="ton" itemRender="page">
+  <a-tabs v-model="activeKey" type="editable-card" :hideAdd="hideAdd" @edit="onEdit" @tabClick="ton" itemRender="page">
     <a-tab-pane v-for="pane in panes" :tab="pane.title" :key="pane.key" :closable="pane.closable">
-      <!-- <component v-bind:is="pane.content"></component> -->
-      {{pane.content}}
+      <component v-bind:is="pane.content"></component>
     </a-tab-pane>
   </a-tabs>
 </template>
@@ -12,16 +11,18 @@ import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 
 export default {
+  name: 'RightTables',
   components: {
     Home,
     About
   },
-  data() {
-    let panes = this.getPanes();
+  data () {
+    let panes = [{ title: '首页', key: 'n0', content: 'Home', closable: false}];
     return {
       activeKey: panes[0].key,
       panes,
-      newTabIndex: 0
+      newTabIndex: 0,
+      hideAdd: true
     };
   },
   computed: {
@@ -46,14 +47,25 @@ export default {
       })
       return t
     },
-    getPanes () {
-      let panes = [];
-      this.$store.state.leftMenu.menuArr.map( (item, i) =>{
-          if(item.isSelect){
+    getPanes (n) {
+      let panes = this.panes;
+      if(this.isChoose(panes, n)){
+        this.$store.state.leftMenu.menuArr.map( (item, i) =>{
+          if(item.key == n){
             panes.push(item)
           }
-      })
+        })
+      }
       return panes
+    },
+    isChoose (a, n) {
+      var l = true;
+      a.map(t => {
+        if(t.key == n){
+          l = false;
+        }
+      })
+      return l;
     },
     callback (key) {
       console.log(key)
@@ -66,8 +78,7 @@ export default {
       this.$store.commit('changeShowMenu', n);
     },
     add (n) {
-      this.panes = this.getPanes();
-      console.log(this.panes);
+      this.panes = this.getPanes(n);
       this.activeKey = n;
     },
     remove (targetKey) {

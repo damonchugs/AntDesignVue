@@ -1,7 +1,7 @@
 <template>
     <div>
         <a-menu
-      :defaultSelectedKeys="['1']"
+      :defaultSelectedKeys="[]"
       :defaultOpenKeys="['sub1']"
       :openKeys='openKeys'
       @openChange="onOpenChange"
@@ -59,13 +59,20 @@ export default {
   },
   watch: {
     keys (n, o) {
-      this.selects(n);
+      this.selects2(n);
     }
   },
   methods: {
     selects (openKeys) {
       let keys = openKeys.key?openKeys.key:openKeys;
-      this.$store.commit('changeMenu', { k: keys, t: true})
+      this.$store.commit('changeMenu', { k: keys, t: this.isChoose(keys)});
+    },
+    selects2 (n) {
+      this.$store.commit('changeMenu', { k: n, t: this.isChoose(n)});
+    },
+    isChoose (k) {
+      var t = this.$store.state.leftMenu.menuArr[Number(k)].isSelect?false:true;
+      return t;
     },
     toggleCollapsed () {
       this.collapsed = !this.collapsed

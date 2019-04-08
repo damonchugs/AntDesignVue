@@ -8,9 +8,9 @@ export default new Vuex.Store({
     leftMenu: {
       showMenu: 0,
       menuArr: [
-        { title: '首页', isSelect: true, key: 'n0', closable: false, content: 'Home'},
-        { title: 'option1', isSelect: true, key: 'n1', content: 'About'},
-        { title: 'option2', isSelect: true, key: 'n2', content: 'About'},
+        { title: '首页', isSelect: true, key: 'n0', content: 'Home', closable: false},
+        { title: 'option1', isSelect: false, key: 'n1', content: 'About'},
+        { title: 'option2', isSelect: false, key: 'n2', content: 'About'},
         { title: 'option3', isSelect: false, key: 'n3', content: 'About'},
         { title: 'option4', isSelect: false, key: 'n4', content: 'About'},
         { title: 'option5', isSelect: false, key: 'n5', content: 'About'},
@@ -27,9 +27,9 @@ export default new Vuex.Store({
     changeMenu (n, r) {
       var len = Number(r.k);
       if(r.t){
-        this.state.leftMenu.showMenu = len;
+        this.state.leftMenu.menuArr[len].isSelect = true;
       }
-      this.state.leftMenu.menuArr[len].isSelect = r.t ? true : false;
+      this.state.leftMenu.showMenu = len;
     },
     changeShowMenu (o, n) {
       this.state.leftMenu.showMenu = Number(n);
