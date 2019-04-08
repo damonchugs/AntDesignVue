@@ -73,7 +73,7 @@ export default {
       this.changeKeyAndOpens(n);
       console.log(n);
     },
-    changeKeyAndOpens (n) { // open---13
+    changeKeyAndOpens (n) { // open---未完成
       $('.ant-menu-item').removeClass('ant-menu-item-selected');
       if(n !== 0){$('.ant-menu-item').eq(Number(n-1)).addClass('ant-menu-item-selected')};
     },
