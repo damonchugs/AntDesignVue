@@ -64,7 +64,8 @@ export default {
   },
   methods: {
     selects (openKeys) {
-      this.$store.commit('changeMenu', { k: openKeys.key, t: true})
+      let keys = openKeys.key?openKeys.key:openKeys;
+      this.$store.commit('changeMenu', { k: keys, t: true})
     },
     toggleCollapsed () {
       this.collapsed = !this.collapsed

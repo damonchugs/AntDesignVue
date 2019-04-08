@@ -30,7 +30,6 @@ export default new Vuex.Store({
         this.state.leftMenu.showMenu = len;
       }
       this.state.leftMenu.menuArr[len].isSelect = r.t ? true : false;
-      console.log(this.state.leftMenu);
     },
     changeShowMenu (o, n) {
       this.state.leftMenu.showMenu = Number(n);
