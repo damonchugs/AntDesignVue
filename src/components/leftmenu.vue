@@ -6,6 +6,7 @@
       :openKeys='openKeys'
       @openChange="onOpenChange"
       @select='selects'
+      @click="menusClick"
       mode="inline"
       theme="dark"
       :inlineCollapsed="collapsed"
@@ -69,15 +70,25 @@ export default {
     },
     selects2 (n) {
       this.$store.commit('changeMenu', { k: n, t: this.isChoose(n)});
+      this.changeKeyAndOpens(n);
+      console.log(n);
+    },
+    changeKeyAndOpens (n) { // open---13
+      $('.ant-menu-item').removeClass('ant-menu-item-selected');
+      if(n !== 0){$('.ant-menu-item').eq(Number(n-1)).addClass('ant-menu-item-selected')};
     },
     isChoose (k) {
       var t = this.$store.state.leftMenu.menuArr[Number(k)].isSelect?false:true;
       return t;
     },
+    menusClick (item, key, keyPath) {
+      console.log(item, key, keyPath);
+    },
     toggleCollapsed () {
       this.collapsed = !this.collapsed
     },
     onOpenChange (openKeys) {
+      console.log(openKeys);
       const latestOpenKey = openKeys.find(key => this.openKeys.indexOf(key) === -1)
       if (this.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
         this.openKeys = openKeys

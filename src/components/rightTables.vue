@@ -32,9 +32,13 @@ export default {
   },
   watch: {
     count (n, o) {
+      n = 'n'+n;
       if(!this.isHave(this.panes, n)){
-        this.add('n'+n);
+        this.add(n);
+      } else {
+        this.activeKey = n;
       }
+       
     }
   },
   methods: {
@@ -73,8 +77,8 @@ export default {
     onEdit (targetKey, action) {
       console.log(action);
     },
-    ton () {
-      var n = this.activeKey[1];
+    ton (n) {
+      var n = n[1];
       this.$store.commit('changeShowMenu', n);
     },
     add (n) {
