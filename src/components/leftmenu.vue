@@ -71,7 +71,6 @@ export default {
     selects2 (n) {
       this.$store.commit('changeMenu', { k: n, t: this.isChoose(n)});
       this.changeKeyAndOpens(n);
-      console.log(n);
     },
     changeKeyAndOpens (n) { // open---未完成
       $('.ant-menu-item').removeClass('ant-menu-item-selected');
@@ -82,7 +81,7 @@ export default {
       return t;
     },
     menusClick (item, key, keyPath) {
-      console.log(item, key, keyPath);
+      // console.log(item, key, keyPath);
     },
     toggleCollapsed () {
       this.collapsed = !this.collapsed

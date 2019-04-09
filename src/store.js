@@ -9,7 +9,7 @@ export default new Vuex.Store({
       showMenu: 0,
       menuArr: [
         { title: '首页', isSelect: true, key: 'n0', content: 'Home', closable: false},
-        { title: 'option1', isSelect: false, key: 'n1', content: 'About'},
+        { title: '表单', isSelect: true, key: 'n1', content: 'Forms'},
         { title: 'option2', isSelect: false, key: 'n2', content: 'About'},
         { title: 'option3', isSelect: false, key: 'n3', content: 'About'},
         { title: 'option4', isSelect: false, key: 'n4', content: 'About'},
