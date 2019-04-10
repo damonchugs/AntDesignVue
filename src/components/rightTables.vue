@@ -86,10 +86,10 @@ export default {
       return l;
     },
     callback(key) {
-      console.log(key);
+      // console.log(key);
     },
     onEdit(targetKey, action) {
-      console.log(action);
+      // console.log(action);
     },
     ton(n) {
       var n = n[1];
