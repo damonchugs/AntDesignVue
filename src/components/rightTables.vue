@@ -17,13 +17,17 @@
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import Forms from "../components/form.vue";
+import Tables from "../components/tables.vue";
+import Drawer from "../components/drawer.vue";
 
 export default {
   name: "RightTables",
   components: {
     Home,
     About,
-    Forms
+    Forms,
+    Tables,
+    Drawer
   },
   data() {
     let panes = [

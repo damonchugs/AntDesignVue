@@ -13,15 +13,15 @@
     >
       <a-menu-item key="1">
         <a-icon type="pie-chart" />
-        <span>Option 1</span>
+        <span>表单</span>
       </a-menu-item>
       <a-menu-item key="2">
         <a-icon type="desktop" />
-        <span>Option 2</span>
+        <span>表格</span>
       </a-menu-item>
       <a-menu-item key="3">
         <a-icon type="inbox" />
-        <span>Option 3</span>
+        <span>抽屉</span>
       </a-menu-item>
       <a-sub-menu key="sub1">
         <span slot="title"><a-icon type="mail" /><span>Navigation One</span></span>
