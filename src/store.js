@@ -12,7 +12,7 @@ export default new Vuex.Store({
         { title: '表单', isSelect: false, key: 'n1', content: 'Forms'},
         { title: '表格', isSelect: false, key: 'n2', content: 'Tables'},
         { title: '抽屉', isSelect: false, key: 'n3', content: 'Drawer'},
-        { title: 'option4', isSelect: false, key: 'n4', content: 'About'},
+        { title: 'flex', isSelect: false, key: 'n4', content: 'Flex'},
         { title: 'option5', isSelect: false, key: 'n5', content: 'About'},
         { title: 'option6', isSelect: false, key: 'n6', content: 'About'},
         { title: 'option7', isSelect: false, key: 'n7', content: 'About'},

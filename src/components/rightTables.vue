@@ -19,6 +19,7 @@ import About from "../views/About.vue";
 import Forms from "../components/form.vue";
 import Tables from "../components/tables.vue";
 import Drawer from "../components/drawer.vue";
+import Flex from "../components/flex.vue";
 
 export default {
   name: "RightTables",
@@ -27,7 +28,8 @@ export default {
     About,
     Forms,
     Tables,
-    Drawer
+    Drawer,
+    Flex
   },
   data() {
     let panes = [
@@ -92,7 +94,7 @@ export default {
       // console.log(action);
     },
     ton(n) {
-      var n = n[1];
+      n = n[1];
       this.$store.commit("changeShowMenu", n);
     },
     add(n) {
