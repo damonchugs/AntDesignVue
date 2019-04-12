@@ -91,7 +91,16 @@ export default {
       // console.log(key);
     },
     onEdit(targetKey, action) {
-      // console.log(action);
+      if(action == 'remove'){
+        let k = 0;
+        this.panes.map((item, index) => {
+          if(item.key == targetKey){
+            k = index-1
+          }
+        })
+        this.$store.commit("changeShowMenu", k);
+        this[action](targetKey)
+      }
     },
     ton(n) {
       n = n[1];
@@ -102,6 +111,7 @@ export default {
       this.activeKey = n;
     },
     remove(targetKey) {
+      console.log(targetKey);
       let activeKey = this.activeKey;
       let lastIndex;
       this.panes.forEach((pane, i) => {
