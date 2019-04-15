@@ -16,10 +16,17 @@
           <a-menu-item v-if="item.type!=='submenu'" :key="item.key"><a-icon :type="item.icon" />{{item.title}}</a-menu-item>
           <a-sub-menu v-else :key="item.key">
             <span slot="title"><a-icon :type="item.icon" /><span>{{item.title}}</span></span>
-            <a-menu-item v-for="it in item.children" :key="it.key"><a-icon :type="it.icon" />{{it.title}}</a-menu-item>
+            <template v-for="it in item.children">
+              <a-menu-item  v-if="it.type!=='submenu'" :key="it.key"><a-icon :type="it.icon" />{{it.title}}</a-menu-item>
+              <a-sub-menu v-else :key="it.key">
+                <span slot="title"><a-icon :type="it.icon" /><span>{{it.title}}</span></span>
+                <a-menu-item  v-for="t in it.children" :key="t.key"><a-icon :type="t.icon" />{{t.title}}</a-menu-item>
+              </a-sub-menu>
+            </template> 
           </a-sub-menu>
         </template>  
-        <a-menu-item key="1">
+
+        <!-- <a-menu-item key="1">
           <a-icon type="pie-chart" />
           <span>表单</span>
         </a-menu-item>
@@ -47,7 +54,7 @@
             <a-menu-item key="10"><a-icon type="inbox" />Option 10</a-menu-item>
             <a-menu-item key="11"><a-icon type="inbox" />Option 11</a-menu-item>
           </a-sub-menu>
-        </a-sub-menu>
+        </a-sub-menu> -->
       </a-menu>
   </div>
 </template>
@@ -78,9 +85,22 @@ export default {
     keys () {
       return this.$store.state.leftMenu.showMenu
     },
-    menus () { 
-      console.log(this.$store.state.leftMenu.menusArr);
-      return this.$store.state.leftMenu.menusArr
+    menus () {
+      let arr = this.$store.state.leftMenu.menusArr;
+      let arrs = [];
+      arr.map( (t,i) => {
+        if(i > 0){
+          arrs.push(t)
+        }
+      })
+      return arrs;
+    },
+    rootKeys () {
+      let k = [];
+      this.menus.map( t => {
+        k.push(t.key)
+      })
+      return k;
     }
   },
   watch: {
@@ -110,8 +130,20 @@ export default {
       };
     },
     isChoose (k) {
-      var t = this.$store.state.leftMenu.menuArr[Number(k)].isSelect?false:true;
-      return t;
+      let flag = false;
+      let arr = a => {
+        a.map((t, n) => {
+          if(!t.children){
+            if(t.key == k){
+              flag = true;
+            }
+          } else {
+            arr(t.children)
+          }
+        })
+      }
+      arr(this.$store.state.leftMenu.menusArr);
+      return flag;
     },
     menusClick (item, key, keyPath) {
       // console.log(item, key, keyPath);
@@ -131,6 +163,7 @@ export default {
   created () {
       this.collapsed = !this.coll;
       this.menu = this.menus;
+      this.rootSubmenuKeys = this.rootKeys;
   }
 }
 </script>

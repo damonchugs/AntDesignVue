@@ -21,6 +21,23 @@ import Tables from "../components/tables.vue";
 import Drawer from "../components/drawer.vue";
 import Flex from "../components/flex.vue";
 
+
+let arrChange = (a, r, n) => {
+  let arr = (a, n) => {
+    a.map((item, i) => {
+      if(!item.children){
+        if (item.key == n) {
+          r.push(item);
+        }
+      } else {
+        arr(item.children, n);
+      }
+    });
+  }
+  arr(a, n);
+  return r;
+}
+
 export default {
   name: "RightTables",
   components: {
@@ -45,11 +62,13 @@ export default {
   computed: {
     count() {
       return this.$store.state.leftMenu.showMenu;
+    },
+    menusArr () {
+      return this.$store.state.leftMenu.menusArr;
     }
   },
   watch: {
     count(n, o) {
-      n = "n" + n;
       if (!this.isHave(this.panes, n)) {
         this.add(n);
       } else {
@@ -67,14 +86,10 @@ export default {
       });
       return t;
     },
-    getPanes(n) {
+    getPanes (n) {
       let panes = this.panes;
       if (this.isChoose(panes, n)) {
-        this.$store.state.leftMenu.menuArr.map((item, i) => {
-          if (item.key == n) {
-            panes.push(item);
-          }
-        });
+        panes = arrChange(this.menusArr, panes, n);
       }
       return panes;
     },
@@ -92,10 +107,10 @@ export default {
     },
     onEdit(targetKey, action) {
       if(action == 'remove'){
-        let k = 0;
+        let k = '';
         this.panes.map((item, index) => {
           if(item.key == targetKey){
-            k = index-1
+            k = item.key
           }
         })
         this.$store.commit("changeShowMenu", k);
@@ -103,7 +118,6 @@ export default {
       }
     },
     ton(n) {
-      n = n[1];
       this.$store.commit("changeShowMenu", n);
     },
     add(n) {
@@ -111,7 +125,6 @@ export default {
       this.activeKey = n;
     },
     remove(targetKey) {
-      console.log(targetKey);
       let activeKey = this.activeKey;
       let lastIndex;
       this.panes.forEach((pane, i) => {
