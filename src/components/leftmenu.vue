@@ -87,12 +87,7 @@ export default {
     },
     menus () {
       let arr = this.$store.state.leftMenu.menusArr;
-      let arrs = [];
-      arr.map( (t,i) => {
-        if(i > 0){
-          arrs.push(t)
-        }
-      })
+      let arrs = arr.filter( t => { return t.key !== 'n0' });
       return arrs;
     },
     rootKeys () {
