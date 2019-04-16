@@ -65,6 +65,21 @@ export default {
     }
   }
 
-  
+  .ant-layout-content{
+    overflow: hidden;
+    .ant-tabs{
+      height: 100%;
+      .ant-tabs-content{
+        height: calc(~"100% - 60px");      
+        overflow: hidden;
+
+        .ant-tabs-tabpane{
+          height: 100%;
+          overflow-x: hidden;
+          overflow-y: scroll;
+        }
+      }
+    }
+  }
 }
 </style>

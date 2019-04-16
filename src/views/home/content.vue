@@ -38,7 +38,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang='less'>
     .contentBar{
         text-align: left;
     }
