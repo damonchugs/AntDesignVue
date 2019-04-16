@@ -22,20 +22,6 @@ export default new Vuex.Store({
   state: {
     leftMenu: {
       showMenu: 0,
-      menuArr: [
-        { title: '首页', isSelect: true, key: 'n0', content: 'Home', closable: false, parent: '0'},
-        { title: '表单', isSelect: false, key: 'n1', content: 'Forms', parent: '0'},
-        { title: '表格', isSelect: false, key: 'n2', content: 'Tables', parent: '0'},
-        { title: '抽屉', isSelect: false, key: 'n3', content: 'Drawer', parent: '0'},
-        { title: 'flex', isSelect: false, key: 'n4', content: 'Flex', parent: '0'},
-        { title: 'option5', isSelect: false, key: 'n5', content: 'About', parent: '1'},
-        { title: 'option6', isSelect: false, key: 'n6', content: 'About', parent: '1'},
-        { title: 'option7', isSelect: false, key: 'n7', content: 'About', parent: '1'},
-        { title: 'option8', isSelect: false, key: 'n8', content: 'About', parent: '2'},
-        { title: 'option9', isSelect: false, key: 'n9', content: 'About', parent: '2'},
-        { title: 'option10', isSelect: false, key: 'n10', content: 'About', parent: 's', parents: '2,1'},
-        { title: 'option11', isSelect: false, key: 'n11', content: 'About', parent: 's', parents: '2,1'},
-      ],
       menusArr: [
         { type: 'index', icon: 'index', title: '首页', isSelect: true, key: 'n0', content: 'Home', closable: false },
         { type: 'form', icon: 'form', title: '表单', isSelect: false, key: 'n1', content: 'Forms' },
