@@ -4,8 +4,8 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 
 let setSelect = (a, k) =>{
-  let arrs = (a, k) => {
-    a.map((t, n) => {
+  var arrs = (a, k) => {
+    a.map((t) => {
       if (!t.children) {
         if (t.key == k) {
           t.isSelect = !t.isSelect;
