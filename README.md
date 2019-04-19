@@ -53,4 +53,16 @@ babel.config.js
             }
         ]
     ]
+    
+####   IE兼容2
+babel.config.js
+module.exports = {
+  presets: [
+    '@vue/app'
+  ],
+  plugins: [
+     ['import', { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: 'css' }],
+  ]
+}
+
 
