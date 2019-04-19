@@ -86,7 +86,6 @@ export default {
       let arr = this.$store.state.leftMenu.menusArr;
       let { x, y, z } = getMenuNum(arr, n);
       x--;
-      console.log(x, y, z, '1');
       // 去除所有选中样式
       $('.ant-menu-item').removeClass('ant-menu-item-selected');
       $('.ant-menu-submenu').removeClass('ant-menu-submenu-selected').removeClass('ant-menu-submenu-open');
