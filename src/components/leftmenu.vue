@@ -32,6 +32,7 @@
 <script>
 // import MenuItem from "./a-menu-items.vue";
 // import SubMenu from "./a-menu-submenu.vue";
+import { getMenuNum } from '../utils/utils.js'
 
 export default {
   name: 'leftMenu',
@@ -42,7 +43,7 @@ export default {
     return {
       menu: [],
       collapsed: false,
-      rootSubmenuKeys: [1, 2, 3, 'sub1', 'sub2', 'sub4'],
+      rootSubmenuKeys: [],
       openKeys: ['1'],
       menuItem: 'MenuItem',
       forms: '表单',
@@ -82,15 +83,29 @@ export default {
       this.changeKeyAndOpens(n);
     },
     changeKeyAndOpens (n) { // open---未完成
-      return false;
+      let arr = this.$store.state.leftMenu.menusArr;
+      let { x, y, z } = getMenuNum(arr, n);
+      x--;
+      console.log(x, y, z, '1');
       // 去除所有选中样式
       $('.ant-menu-item').removeClass('ant-menu-item-selected');
       $('.ant-menu-submenu').removeClass('ant-menu-submenu-selected').removeClass('ant-menu-submenu-open');
       $('.ant-menu-sub').hide();
       // 对选中标签添加样式
-      if(n !== 0){
-        $('.ant-menu-item').eq(Number(n)-1).addClass('ant-menu-item-selected').parents('.ant-menu-sub').show().parents('.ant-menu-submenu').addClass('ant-menu-submenu-open ant-menu-submenu-selected')
-        // console.log(n, $('.ant-menu-item-selected'));
+      if(y == 0 && z == 0){
+        $('.a-menus>.ant-menu-item').eq(x).addClass('ant-menu-item-selected');
+      } else if( y !== 0 && z == 0){
+        y--;
+        $('.a-menus>li').eq(x).addClass('ant-menu-submenu-open ant-menu-submenu-selected');
+        $('.a-menus>li:eq('+x+')>ul').show();
+        $('.a-menus>li:eq('+x+')>ul>li:eq('+y+')').addClass('ant-menu-item-selected');
+      } else {
+        y--; z--;
+        $('.a-menus>li:eq('+x+')').addClass('ant-menu-submenu-open ant-menu-submenu-selected');
+        $('.a-menus>li:eq('+x+')>ul').show();
+        $('.a-menus>li:eq('+x+')>ul>li:eq('+y+')').addClass('ant-menu-submenu-open ant-menu-submenu-selected');
+        $('.a-menus>li:eq('+x+')>ul>li:eq('+y+')>ul').show();
+        $('.a-menus>li:eq('+x+')>ul>li:eq('+y+')>ul>li:eq('+z+')').addClass('ant-menu-item-selected');
       }
     },
     isChoose (k) {
