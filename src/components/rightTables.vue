@@ -119,7 +119,7 @@ export default {
           }
         })
         this.$store.commit("changeShowMenu", k);
-        this[action](targetKey)
+        this[action](targetKey);
       }
     },
     ton(n) {
