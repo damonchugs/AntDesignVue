@@ -56,7 +56,8 @@ export default {
       activeKey: panes[0].key,
       panes,
       newTabIndex: 0,
-      hideAdd: true
+      hideAdd: true,
+      removeFlag: false
     };
   },
   computed: {
@@ -69,10 +70,14 @@ export default {
   },
   watch: {
     count(n, o) {
-      if (!this.isHave(this.panes, n)) {
-        this.add(n);
+      if(!this.removeFlag){
+        if (!this.isHave(this.panes, n)) {
+          this.add(n);
+        } else {
+          this.activeKey = n;
+        }
       } else {
-        this.activeKey = n;
+        this.removeFlag = false;
       }
     }
   },
@@ -125,6 +130,7 @@ export default {
       this.activeKey = n;
     },
     remove(targetKey) {
+      this.removeFlag = true;
       let activeKey = this.activeKey;
       let lastIndex;
       this.panes.forEach((pane, i) => {
@@ -132,7 +138,7 @@ export default {
           lastIndex = i - 1;
         }
       });
-      const panes = this.panes.filter(pane => pane.key !== targetKey);
+      const panes = this.panes.filter( pane => pane.key !== targetKey)
       if (lastIndex >= 0 && activeKey === targetKey) {
         activeKey = panes[lastIndex].key;
       }
