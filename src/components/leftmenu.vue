@@ -90,6 +90,9 @@ export default {
       $('.ant-menu-item').removeClass('ant-menu-item-selected');
       $('.ant-menu-submenu').removeClass('ant-menu-submenu-selected').removeClass('ant-menu-submenu-open');
       $('.ant-menu-sub').hide();
+      if(n == 'n0'){
+        return false;
+      }
       // 对选中标签添加样式
       if(y == 0 && z == 0){
         $('.a-menus>.ant-menu-item').eq(x).addClass('ant-menu-item-selected');
