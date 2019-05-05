@@ -1,7 +1,7 @@
 <template>
-    <a-sub-menu :key="key">
+    <a-sub-menu :key="datas.key">
         <span slot="title"><a-icon type="mail" /><span>Navigation One</span></span>
-        <MenusItem v-for="(item, index) in arr" :key="index" :icon="item.icon" :title="item.title" />
+        <!-- <MenusItem v-for="(item, index) in datas" :key="index" :icon="item.icon" :title="item.title" /> -->
     </a-sub-menu>
 </template>
 
@@ -13,7 +13,7 @@
         components:{
             MenusItem
         },
-        props: ['key', 'title', 'icon', 'arr']
+        props: ['datas']
     }
 </script>
 

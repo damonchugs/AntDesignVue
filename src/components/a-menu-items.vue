@@ -1,13 +1,25 @@
 <template>
-    <a-menu-item :key="keys">
-        <a-icon :type="icon" />
-        <span>{{title}}</span>
+    <a-menu-item :key="datas.key">
+        <a-icon :type="datas.icon" />
+        <span>{{datas.title}}</span>
     </a-menu-item>
 </template>
 
 <script>
+
 export default {
     name: 'Menus',
-    props: ['keys', 'title', 'icon']
+    props: ["datas"],
+    data () {
+        return {
+
+        }
+    },
+    created () {
+        console.log(this.datas);
+    },
+    methods: {
+        
+    }
 }
 </script>
